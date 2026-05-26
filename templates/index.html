@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistem Informasi Perpustakaan SD - Aplikasi Manajemen Data Anggota, Buku, dan Transaksi Peminjaman/Pengembalian.">
+    <title>Perpustakaan SD - Sistem Informasi Manajemen</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-book-open-reader brand-icon"></i>
+                <div class="brand-text">
+                    <h1>Perpustakaan SD</h1>
+                    <span>Sistem Manajemen</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-link active" data-target="dashboard" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="#" class="nav-link" data-target="slideshow" id="nav-slideshow">
+                    <i class="fa-solid fa-presentation-screen"></i> Slide Presentasi
+                </a>
+                <a href="#" class="nav-link" data-target="member" id="nav-member">
+                    <i class="fa-solid fa-users"></i> Data Anggota
+                </a>
+                <a href="#" class="nav-link" data-target="buku" id="nav-buku">
+                    <i class="fa-solid fa-book"></i> Katalog Buku
+                </a>
+                <a href="#" class="nav-link" data-target="transaksi" id="nav-transaksi">
+                    <i class="fa-solid fa-handshake"></i> Transaksi Pinjam
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Status DB: <span class="status-badge connected" id="db-status-badge"><i class="fa-solid fa-circle-check"></i> Terhubung</span></p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="main-header">
+                <div class="header-title">
+                    <h2 id="page-title">Dashboard Utama</h2>
+                    <p id="page-subtitle">Ringkasan statistik dan aktivitas perpustakaan</p>
+                </div>
+                <div class="header-profile">
+                    <span class="date-now" id="live-date">Selasa, 26 Mei 2026</span>
+                    <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="sec-dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card blue">
+                        <div class="stat-icon"><i class="fa-solid fa-book"></i></div>
+                        <div class="stat-info">
+                            <h3>Total Buku</h3>
+                            <p class="stat-number" id="stat-total-buku">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card purple">
+                        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3>Total Anggota</h3>
+                            <p class="stat-number" id="stat-total-member">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card orange">
+                        <div class="stat-icon"><i class="fa-solid fa-bookmark"></i></div>
+                        <div class="stat-info">
+                            <h3>Sedang Dipinjam</h3>
+                            <p class="stat-number" id="stat-total-dipinjam">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-details">
+                    <div class="dashboard-card recent-activity">
+                        <h3><i class="fa-solid fa-history"></i> Transaksi Terbaru</h3>
+                        <div class="table-container min-h">
+                            <table id="tbl-recent-transactions">
+                                <thead>
+                                    <tr>
+                                        <th>Anggota</th>
+                                        <th>Buku</th>
+                                        <th>Tgl Pinjam</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" class="text-center">Memuat data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slideshow Section -->
+            <section id="sec-slideshow" class="content-section">
+                <div class="slideshow-wrapper">
+                    <!-- Slides Container -->
+                    <div class="slides-container">
+                        <!-- Slide 1: Studi Kasus -->
+                        <div class="slide active" data-index="1">
+                            <div class="slide-content">
+                                <span class="slide-badge">Slide 1 dari 3</span>
+                                <h2>Studi Kasus: Perpustakaan SD</h2>
+                                <p class="slide-desc">Latar Belakang & Analisis Kebutuhan Sistem Informasi Perpustakaan.</p>
+                                
+                                <div class="case-study-grid">
+                                    <div class="case-box">
+                                        <div class="case-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                                        <h4>Masalah Utama</h4>
+                                        <p>Pencatatan data peminjaman buku di Sekolah Dasar seringkali masih menggunakan kertas, rentan hilang, rusak, dan sulit untuk memantau buku mana saja yang terlambat dikembalikan.</p>
+                                    </div>
+                                    <div class="case-box">
+                                        <div class="case-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                                        <h4>Solusi Digital</h4>
+                                        <p>Membangun sistem informasi perpustakaan berbasis web yang mengotomatisasi proses pengelolaan data Anggota (Member), Katalog Buku, serta Transaksi Peminjaman dan Pengembalian.</p>
+                                    </div>
+                                    <div class="case-box full-width">
+                                        <div class="case-icon"><i class="fa-solid fa-code-fork"></i></div>
+                                        <h4>Relasi Relasional (Many-to-Many)</h4>
+                                        <p><strong>Member</strong> dan <strong>Buku</strong> memiliki hubungan <em>Many-to-Many</em>. Seorang member bisa meminjam banyak buku, dan sebuah buku bisa dipinjam oleh banyak member secara bergantian. Hubungan ini dijembatani oleh entitas <strong>Peminjaman</strong>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2: ERD Diagram -->
+                        <div class="slide" data-index="2">
+                            <div class="slide-content">
+                                <span class="slide-badge">Slide 2 dari 3</span>
+                                <h2>Entity Relationship Diagram (ERD)</h2>
+                                <p class="slide-desc">Visualisasi Struktur Tabel Database dan Hubungan Relasi Data.</p>
+                                
+                                <div class="erd-diagram">
+                                    <!-- Member Node -->
+                                    <div class="erd-node" id="node-member">
+                                        <div class="node-header"><i class="fa-solid fa-user"></i> MEMBER</div>
+                                        <div class="node-body">
+                                            <div class="node-attr pk">🔑 id_member [INT] (PK)</div>
+                                            <div class="node-attr">nama [VARCHAR]</div>
+                                            <div class="node-attr unique">⭐ email [VARCHAR] (UQ)</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Relation Line 1 -->
+                                    <div class="erd-connector">
+                                        <div class="connector-line"></div>
+                                        <div class="connector-label">1 : N</div>
+                                    </div>
+
+                                    <!-- Peminjaman Node (Bridge Table) -->
+                                    <div class="erd-node bridge" id="node-peminjaman">
+                                        <div class="node-header"><i class="fa-solid fa-handshake"></i> PEMINJAMAN</div>
+                                        <div class="node-body">
+                                            <div class="node-attr pk">🔑 id_pinjam [INT] (PK)</div>
+                                            <div class="node-attr fk">🔗 id_member [INT] (FK)</div>
+                                            <div class="node-attr fk">🔗 id_buku [INT] (FK)</div>
+                                            <div class="node-attr">tgl_pinjam [VARCHAR]</div>
+                                            <div class="node-attr">status [VARCHAR]</div>
+                                            <div class="node-attr nullable">tgl_kembali [VARCHAR]</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Relation Line 2 -->
+                                    <div class="erd-connector">
+                                        <div class="connector-line"></div>
+                                        <div class="connector-label">N : 1</div>
+                                    </div>
+
+                                    <!-- Buku Node -->
+                                    <div class="erd-node" id="node-buku">
+                                        <div class="node-header"><i class="fa-solid fa-book"></i> BUKU</div>
+                                        <div class="node-body">
+                                            <div class="node-attr pk">🔑 id_buku [INT] (PK)</div>
+                                            <div class="node-attr">judul [VARCHAR]</div>
+                                            <div class="node-attr">penulis [VARCHAR]</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3: Alur Program -->
+                        <div class="slide" data-index="3">
+                            <div class="slide-content">
+                                <span class="slide-badge">Slide 3 dari 3</span>
+                                <h2>Alur Program Perpustakaan</h2>
+                                <p class="slide-desc">Langkah Operasional Penggunaan Aplikasi dalam Proses Bisnis Harian.</p>
+                                
+                                <div class="flow-diagram">
+                                    <div class="flow-step">
+                                        <div class="step-num">1</div>
+                                        <div class="step-icon"><i class="fa-solid fa-user-plus"></i></div>
+                                        <h4>Input Member & Buku</h4>
+                                        <p>Anggota baru didaftarkan dan buku-buku baru dimasukkan ke katalog melalui antarmuka CRUD.</p>
+                                    </div>
+                                    <div class="flow-arrow"><i class="fa-solid fa-circle-arrow-right"></i></div>
+                                    
+                                    <div class="flow-step">
+                                        <div class="step-num">2</div>
+                                        <div class="step-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                                        <h4>Transaksi Pinjam</h4>
+                                        <p>Pilih Anggota dan Buku, tentukan Tanggal Peminjaman. Status otomatis diset menjadi <strong>"Dipinjam"</strong>.</p>
+                                    </div>
+                                    <div class="flow-arrow"><i class="fa-solid fa-circle-arrow-right"></i></div>
+
+                                    <div class="flow-step">
+                                        <div class="step-num">3</div>
+                                        <div class="step-icon"><i class="fa-solid fa-arrow-rotate-left"></i></div>
+                                        <h4>Pengembalian Buku</h4>
+                                        <p>Ketika buku dikembalikan, klik tombol <strong>"Kembalikan"</strong>. Status berubah menjadi <strong>"Dikembalikan"</strong> dengan tanggal pengembalian tercatat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide Controls -->
+                    <div class="slideshow-controls">
+                        <button class="slide-btn btn-prev" id="btn-slide-prev"><i class="fa-solid fa-chevron-left"></i> Sebelumnya</button>
+                        <div class="slide-indicators" id="slide-indicators">
+                            <span class="indicator active" data-target="1"></span>
+                            <span class="indicator" data-target="2"></span>
+                            <span class="indicator" data-target="3"></span>
+                        </div>
+                        <button class="slide-btn btn-next" id="btn-slide-next">Selanjutnya <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Member CRUD Section -->
+            <section id="sec-member" class="content-section">
+                <div class="crud-header">
+                    <h3>Daftar Anggota Perpustakaan</h3>
+                    <button class="btn btn-primary" id="btn-add-member"><i class="fa-solid fa-plus"></i> Tambah Anggota</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="tbl-members">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama Anggota</th>
+                                <th>Email</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" class="text-center">Memuat data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Member Modal -->
+                <div class="modal" id="modal-member">
+                    <div class="modal-content glass">
+                        <div class="modal-header">
+                            <h3 id="member-modal-title">Tambah Anggota</h3>
+                            <button class="modal-close" id="btn-close-member-modal">&times;</button>
+                        </div>
+                        <form id="form-member">
+                            <input type="hidden" id="member-id">
+                            <div class="form-group">
+                                <label for="member-nama">Nama Lengkap</label>
+                                <input type="text" id="member-nama" required placeholder="Masukkan nama anggota">
+                            </div>
+                            <div class="form-group">
+                                <label for="member-email">Alamat Email</label>
+                                <input type="email" id="member-email" required placeholder="Masukkan email">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="btn-cancel-member">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buku CRUD Section -->
+            <section id="sec-buku" class="content-section">
+                <div class="crud-header">
+                    <h3>Katalog Buku</h3>
+                    <button class="btn btn-primary" id="btn-add-buku"><i class="fa-solid fa-plus"></i> Tambah Buku</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="tbl-buku">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Judul Buku</th>
+                                <th>Penulis</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" class="text-center">Memuat data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Buku Modal -->
+                <div class="modal" id="modal-buku">
+                    <div class="modal-content glass">
+                        <div class="modal-header">
+                            <h3 id="buku-modal-title">Tambah Buku</h3>
+                            <button class="modal-close" id="btn-close-buku-modal">&times;</button>
+                        </div>
+                        <form id="form-buku">
+                            <input type="hidden" id="buku-id">
+                            <div class="form-group">
+                                <label for="buku-judul">Judul Buku</label>
+                                <input type="text" id="buku-judul" required placeholder="Masukkan judul buku">
+                            </div>
+                            <div class="form-group">
+                                <label for="buku-penulis">Penulis</label>
+                                <input type="text" id="buku-penulis" placeholder="Masukkan nama penulis">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="btn-cancel-buku">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transaksi CRUD Section -->
+            <section id="sec-transaksi" class="content-section">
+                <div class="crud-header">
+                    <h3>Transaksi Peminjaman & Pengembalian</h3>
+                    <button class="btn btn-primary" id="btn-add-transaksi"><i class="fa-solid fa-plus"></i> Catat Peminjaman</button>
+                </div>
+
+                <div class="table-container">
+                    <table id="tbl-transaksi">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama Anggota</th>
+                                <th>Judul Buku</th>
+                                <th>Tgl Pinjam</th>
+                                <th>Status</th>
+                                <th>Tgl Kembali</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" class="text-center">Memuat data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Transaksi Modal -->
+                <div class="modal" id="modal-transaksi">
+                    <div class="modal-content glass">
+                        <div class="modal-header">
+                            <h3 id="transaksi-modal-title">Catat Transaksi Baru</h3>
+                            <button class="modal-close" id="btn-close-transaksi-modal">&times;</button>
+                        </div>
+                        <form id="form-transaksi">
+                            <input type="hidden" id="transaksi-id">
+                            <div class="form-group">
+                                <label for="transaksi-member">Pilih Anggota</label>
+                                <select id="transaksi-member" required>
+                                    <option value="">-- Pilih Anggota --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="transaksi-buku">Pilih Buku</label>
+                                <select id="transaksi-buku" required>
+                                    <option value="">-- Pilih Buku --</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="transaksi-tgl-pinjam">Tanggal Pinjam</label>
+                                <input type="date" id="transaksi-tgl-pinjam" required>
+                            </div>
+                            
+                            <!-- Fields below only visible during edit -->
+                            <div class="edit-only" id="edit-transaksi-fields" style="display:none;">
+                                <div class="form-group">
+                                    <label for="transaksi-status">Status Peminjaman</label>
+                                    <select id="transaksi-status">
+                                        <option value="Dipinjam">Dipinjam</option>
+                                        <option value="Dikembalikan">Dikembalikan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="transaksi-tgl-kembali">Tanggal Pengembalian</label>
+                                    <input type="date" id="transaksi-tgl-kembali">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="btn-cancel-transaksi">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan Transaksi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Pengembalian Modal (Quick Return) -->
+                <div class="modal" id="modal-kembalikan">
+                    <div class="modal-content glass">
+                        <div class="modal-header">
+                            <h3>Pengembalian Buku</h3>
+                            <button class="modal-close" id="btn-close-kembalikan-modal">&times;</button>
+                        </div>
+                        <form id="form-kembalikan">
+                            <input type="hidden" id="kembalikan-id">
+                            <p class="warning-text">Konfirmasi pengembalian buku untuk transaksi ini.</p>
+                            <div class="form-group">
+                                <label for="kembalikan-tgl">Tanggal Pengembalian</label>
+                                <input type="date" id="kembalikan-tgl" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="btn-cancel-kembalikan">Batal</button>
+                                <button type="submit" class="btn btn-success">Konfirmasi Pengembalian</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Custom JS -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
