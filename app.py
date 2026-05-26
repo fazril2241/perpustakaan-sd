@@ -7,10 +7,13 @@ app = Flask(__name__)
 
 # Konfigurasi Koneksi MySQL
 DB_CONFIG = {
-    'host': '127.0.0.1',
-    'user': 'root',
-    'password': ''  # Default password XAMPP kosong
+    "host": os.getenv("DB_HOST", "127.0.0.1"),
+    "user": os.getenv("DB_USER", "root"),
+    "password": os.getenv("DB_PASSWORD", ""),  # Default empty for local XAMPP
+    "database": os.getenv("DB_NAME", "perpustakaan_sd")
 }
+
+
 DB_NAME = 'perpustakaan_sd'
 
 def get_db_connection(include_db=True):
